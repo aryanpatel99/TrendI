@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import "tailwindcss";
+
+body {
+  font-family: 'Manrope', sans-serif;
+}
+
+@layer components {
+  .nav-link {
+    @apply relative pb-1 text-gray-700 transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 bottom-0 h-0.5 w-0 bg-gray-700 transition-all duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-black;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link-active {
+    @apply text-black;
+  }
+
+  .nav-link-active::after {
+    @apply w-full;
+  }
+}
+
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@media (max-width: 640px) {
+  a.active{
+    background-color: black;
+    color: white;
+  }
+  
+}
