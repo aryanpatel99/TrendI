@@ -74,8 +74,10 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 import LOGO from './TrendI.png'
+import guarantee_icon from './guarantee.png'
 
 export const assets = {
+    guarantee_icon,
     LOGO,
     logo,
     hero_img,

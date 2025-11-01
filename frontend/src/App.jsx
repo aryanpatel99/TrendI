@@ -11,6 +11,7 @@ import Orders from './pages/Orders'
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/orders' element={<Orders/>}/> 
         <Route path='*' element={<NotFound/>}/>
       </Routes>
+      <Footer/>
     </div>
   )
 }
