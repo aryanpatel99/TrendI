@@ -3,6 +3,7 @@
 
 **Frontend:** 🔗 *https://trend-i-j816.vercel.app/*
 
+**Backend:** 🔗 *https://trendi.onrender.com/*
 
 ---
 
