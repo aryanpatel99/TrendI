@@ -26,9 +26,9 @@ const Login = () => {
       let url =""
       
       if(currentState === "Login"){
-        url = "http://localhost:3000/api/user/login"
+        url = `${import.meta.env.VITE_APP_API_URL}/api/user/login`
       }else {
-        url = "http://localhost:3000/api/user/register";
+        url = `${import.meta.env.VITE_APP_API_URL}/api/user/register`;
       }
 
       const res = await fetch(url,{
