@@ -12,12 +12,15 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Footer from './components/Footer'
-import SearchBar from './components/SearchBar'
+import SearchBar from './components/SearchBar' 
+import {Toaster} from 'react-hot-toast'
 
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+
       <Navbar/>
+      <Toaster />
       <SearchBar/>
       <Routes>
         <Route path='/' element={<Home/>} />
