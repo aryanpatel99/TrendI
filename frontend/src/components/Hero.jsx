@@ -21,23 +21,23 @@ const Hero = () => {
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
         {/* <!-- Item 1 --> */}
         <div className="duration-700 ease-in-out" data-carousel-item="active">
-          <img src={assets.hero_img} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
+          <img src={assets.hero_img} className="absolute inset-0 w-full h-full object-cover" alt="..." />
         </div>
         {/* <!-- Item 2 --> */}
         <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src={assets.hero_img} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
+          <img src={assets.hero1} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
         </div>
         {/* <!-- Item 3 --> */}
         <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src={assets.hero_img} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
+          <img src={assets.hero2} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
         </div>
         {/* <!-- Item 4 --> */}
         <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src={assets.hero_img} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
+          <img src={assets.hero3} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
         </div>
         {/* <!-- Item 5 --> */}
         <div className="hidden duration-700 ease-in-out" data-carousel-item>
-          <img src={assets.hero_img} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
+          <img src={assets.hero4} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
         </div>
       </div>
       {/* <!-- Slider indicators --> */}
