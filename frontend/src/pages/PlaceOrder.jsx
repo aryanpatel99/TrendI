@@ -5,7 +5,7 @@ import { assets } from '../assets/frontend_assets/assets'
 import { ShopContext } from '../context/ShopContext'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import { currency } from '../../../admin/src/App'
+
 
 const PlaceOrder = () => {
 
