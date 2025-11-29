@@ -9,27 +9,31 @@ import CartTotal from '../components/CartTotal'
 
 const Cart = () => {
 
-  const { products, currency, cartItems,updataQuantity,navigate } = useContext(ShopContext)
+  const { products, currency, cartItems, updataQuantity, navigate } = useContext(ShopContext)
 
   const [cartData, setCartData] = useState([])
 
   useEffect(() => {
-    const tempData = []
 
-    for (const items in cartItems) {
-      for (const item in cartItems[items]) {
-        if (cartItems[items][item] > 0) {
-          tempData.push({
-            _id: items,
-            size: item,
-            quantity: cartItems[items][item]
-          })
+    if (products.length > 0) {
+
+      const tempData = []
+
+      for (const items in cartItems) {
+        for (const item in cartItems[items]) {
+          if (cartItems[items][item] > 0) {
+            tempData.push({
+              _id: items,
+              size: item,
+              quantity: cartItems[items][item]
+            })
+          }
         }
       }
-    }
 
-    setCartData(tempData)
-  }, [cartItems])
+      setCartData(tempData)
+    }
+  }, [cartItems, products])
 
   return (
     <div className='border-t border-gray-200 pt-14'>
@@ -38,10 +42,10 @@ const Cart = () => {
       </div>
 
       <div>
-        {cartData.map((item,i)=>{
-          const productData = products.find((product)=>product._id == item._id)
+        {cartData.map((item, i) => {
+          const productData = products.find((product) => product._id == item._id)
 
-          return(
+          return (
             <div key={i} className='py-4 border-b border-t border-gray-300 text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] item-center gap-4 items-center'>
 
               <div className='flex items-start gap-6'>
@@ -55,9 +59,9 @@ const Cart = () => {
                 </div>
               </div>
 
-              <input onChange={(e)=>e.target.value === '' || e.target.value === "0" ? null:updataQuantity(item._id , item.size,Number(e.target.value))} className='border h-3/5 rounded border-gray-200 max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 ' type="number" min={1} defaultValue={item.quantity}/>
+              <input onChange={(e) => e.target.value === '' || e.target.value === "0" ? null : updataQuantity(item._id, item.size, Number(e.target.value))} className='border h-3/5 rounded border-gray-200 max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 ' type="number" min={1} defaultValue={item.quantity} />
 
-              <img onClick={()=>updataQuantity(item._id,item.size,0)} className='w-4 mr-4 sm:w-5 cursor-pointer  active:scale-75' src={assets.bin_icon} alt="bin-icon" />
+              <img onClick={() => updataQuantity(item._id, item.size, 0)} className='w-4 mr-4 sm:w-5 cursor-pointer  active:scale-75' src={assets.bin_icon} alt="bin-icon" />
             </div>
           )
         })}
@@ -65,9 +69,9 @@ const Cart = () => {
 
       <div className='flex justify-end my-20'>
         <div className='w-full sm:w-[450px]'>
-          <CartTotal/>
+          <CartTotal />
           <div className='w-full text-end'>
-              <button onClick={()=> navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3 rounded-lg active:scale-95'>PROCEED TO CHECKOUT</button>
+            <button onClick={() => navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3 rounded-lg active:scale-95'>PROCEED TO CHECKOUT</button>
           </div>
         </div>
       </div>

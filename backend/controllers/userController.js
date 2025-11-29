@@ -94,35 +94,55 @@ const registerUser = async (req, res) => {
 };
 
 // route for admin login
-const adminLogin = async (req, res) => {};
-
-// orders -*
-const getUsersOrders = async (req, res) => {
+const adminLogin = async (req, res) => {
   try {
-    const orders = [
-      { id: 1, product: "Shoes", amount: 1200 },
-      { id: 2, product: "Laptop Bag", amount: 900 },
-    ];
+    const { email, password } = req.body;
 
-
-    res.json({
-      success: true,
-      orders: orders,
-      userId: req.userId
-    });
-
-
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      const token = jwt.sign({email,role: "admin"}, process.env.JWT_SECRET, {expiresIn: "1d"});
+      res.json({ success: true, token });
+    } else {
+      res.json({
+        success: false,
+        message: "Invalid Credentials",
+      });
+    }
   } catch (error) {
+    console.log(error);
     res.json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 };
+
+// orders -*
+// const getUsersOrders = async (req, res) => {
+//   try {
+//     const orders = [
+//       { id: 1, product: "Shoes", amount: 1200 },
+//       { id: 2, product: "Laptop Bag", amount: 900 },
+//     ];
+
+//     res.json({
+//       success: true,
+//       orders: orders,
+//       userId: req.userId,
+//     });
+//   } catch (error) {
+//     res.json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
 
 module.exports = {
   loginUser,
   registerUser,
   adminLogin,
-  getUsersOrders
+  // getUsersOrders,
 };
