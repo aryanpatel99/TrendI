@@ -33,6 +33,8 @@ const Navbar = () => {
         <NavLink className={({ isActive }) =>
           isActive ? 'nav-link nav-link-active' : 'nav-link'
         } to={'/contact'}>CONTACT</NavLink>
+
+        <NavLink className='cursor-pointer' to={'https://trend-i-frhb.vercel.app/add'}><span className='border px-3 py-1 rounded-full text-xs border-gray-200 shadow font-semibold'>Admin Panel</span></NavLink>
       </ul>
 
       <div className='flex items-center gap-6'>
@@ -74,6 +76,7 @@ const Navbar = () => {
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/collection'}>COLLECTION</NavLink>
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/about'}>ABOUT</NavLink>
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/contact'}>CONTACT</NavLink>
+          <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'https://trend-i-frhb.vercel.app/add'}>ADMIN</NavLink>
 
         </div>
       </div>
