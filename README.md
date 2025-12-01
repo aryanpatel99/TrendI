@@ -5,11 +5,15 @@
 
 **Backend:** 🔗 *https://trendi.onrender.com/*
 
+**Admin:** 🔗 *https://trend-i-frhb.vercel.app/add*
+
 ---
 
 ## 🚀 **Project Overview**
 
-**Trendi** is a modern full-stack e-commerce platform built for small and medium businesses to easily launch their online stores. The platform enables customers to **browse products**, **manage their cart**, and **place orders**, while admins have full control over **product management** and **user access.**
+**Trendi** is a modern single-store e-commerce web application designed to help businesses showcase and sell their products online with ease. The platform enables customers to **browse products**, **manage their cart**, and **place orders**, while admins have full control over **product management** and **user access.**
+
+On the administrative side, Trendi includes a secure, dedicated admin panel where authorized users can add new products, update existing items, manage inventory, and maintain the store’s catalog. Regular users cannot modify products — all product management is fully restricted to the admin.
 
 Powered by a reliable tech stack, Trendi ensures **simplicity, scalability, and security** — all wrapped in a clean UI and modular codebase.
 
@@ -21,7 +25,7 @@ Powered by a reliable tech stack, Trendi ensures **simplicity, scalability, and 
 * Implement secure **JWT authentication** and role-based access control.
 * Support **CRUD operations** for products, users, and carts.
 * Deploy on cloud platforms using **Vercel and MongoDB Atlas**.
-* Establish a foundation for future enhancements like orders, payment gateways, etc.
+* Payment gateway integration (Razorpay, Stripe, COD)
 
 ---
 
@@ -33,8 +37,8 @@ Powered by a reliable tech stack, Trendi ensures **simplicity, scalability, and 
 | **Backend**        | Node.js, Express.js                  | REST API & Business Logic             |
 | **Database**       | MongoDB Atlas                        | Scalable NoSQL database               |
 | **Authentication** | JWT                                  | User authentication & authorization   |
-| **HTTP Client**    | Fetch API                                | API communication                     |
-| **Hosting**        | Vercel (client + server)             | Cloud deployment & CI/CD              |
+| **HTTP Client**    | Axios                                | API communication                     |
+| **Hosting**        | Vercel (client), Render (server)             | Cloud deployment & CI/CD              |
 | **Config**         | .env                                 | Environment-specific secrets and URLs |
 
 ---
@@ -48,6 +52,7 @@ Powered by a reliable tech stack, Trendi ensures **simplicity, scalability, and 
 * Add/update/remove items in the cart
 * View product details
 * Search & filter products
+* Pagination
 
 ### 🧑‍💼 **Admin Features**
 
@@ -64,11 +69,13 @@ Powered by a reliable tech stack, Trendi ensures **simplicity, scalability, and 
 | ------------------- | ------ | ------------------------- | ------------- |
 | `/api/user/register`  | POST   | Register new user         | Public        |
 | `/api/user/login`   | POST   | Login authenticated users | Public        |
-| `/api/product/list`     | GET    | Fetch all products        | Authenticated |
-| `/api/products/:id` | PUT    | Update a product by ID    | Admin         |
-| `/api/products/:id` | DELETE | Remove a product by ID    | Admin         |
-| `/api/cart`         | GET    | Get cart items            | Authenticated |
-| `/api/cart`         | POST   | Add/update cart items     | Authenticated |
+| `/api/user/admin`   | POST   | Login authenticated admin | Public        |
+| `/api/product/list`     | GET    | Fetch all products        | Authenticated,Admin |
+| `/api/product/add`     | POST    | Add products        | Authenticated,Admin |
+| `/api/product/remove`     | POST    | Remove products        | Authenticated,Admin |
+| `/api/cart/get`         | GET    | Get cart items            | Authenticated |
+| `/api/cart/add`         | POST   | Add/update cart items     | Authenticated |
+| `/api/order/list`         | POST   | All orders   | Authenticated |
 
 ---
 
@@ -98,10 +105,8 @@ Powered by a reliable tech stack, Trendi ensures **simplicity, scalability, and 
 
 ## 🧩 **Upcoming Enhancements**
 
-* Payment gateway (Stripe/PayPal)
-* Order tracking & management
-* Wishlist support
-* Improved admin dashboard
+* Payment gateway (Stripe/PayPal) | Update: Implemented ✅
+* Order tracking & management | Update: Implemented ✅
 * Better search & recommendation flow
 
 ---
