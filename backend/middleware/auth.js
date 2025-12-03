@@ -1,28 +1,30 @@
 const jwt = require("jsonwebtoken");
 
 const authUser = async (req, res, next) => {
-  const {token} = req.headers
-  if(!token){
+  const { token } = req.headers;
+  if (!token) {
     return res.json({
       success: false,
-      message: "Authorization denied, Login again"
-    })
+      message: "Authorization denied, Login again",
+    });
   }
 
   try {
-    const token_decode = jwt.verify(token,process.env.JWT_SECRET)
-    req.body.userId = token_decode.id
-    next()
+    const token_decode = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Auth Middleware - Token:", token);
+    console.log("Auth Middleware - Decoded ID:", token_decode.id);
+    req.userId = token_decode.id;
+    next();
   } catch (error) {
     console.log(error);
     res.json({
       success: false,
-      message: error.message
-    })
+      message: error.message,
+    });
   }
-}
+};
 
-module.exports =  authUser;
+module.exports = authUser;
 
 // const verifyToken = (req, res, next) => {
 //   try {
@@ -45,6 +47,5 @@ module.exports =  authUser;
 //     });
 //   }
 // };
-
 
 // module.exports = { verifyToken };

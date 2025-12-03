@@ -10,16 +10,16 @@
 
 //     const fetchOrders = async() => {
 //       try {
-        
+
 //         const res = await fetch('http://localhost:3000/api/user/orders',{
 //           headers:{
 //             "Authorization": `Bearer ${token}`
 //           }
 //         })
-    
+
 //         const data = await res.json()
 //         console.log(data);
-    
+
 //         if(data.success){
 //           setOrders(data.orders)
 //         }else{
@@ -71,22 +71,22 @@ import axios from 'axios'
 
 const Orders = () => {
 
-  const {backendUrl, token ,currency} = useContext(ShopContext)
+  const { backendUrl, token, currency } = useContext(ShopContext)
 
   const [orderData, setOrderData] = useState([])
 
-  const loadOrderData = async() =>{
+  const loadOrderData = async () => {
     try {
-      if(!token){
+      if (!token) {
         return null
       }
 
-      const response = await axios.post(backendUrl + '/api/order/userorders',{},{headers:{token}})
+      const response = await axios.get(backendUrl + '/api/order/userorders', { headers: { token } })
 
-      if(response.data.success){
+      if (response.data.success) {
         let allOrdersItem = []
-        response.data.orders.map((order)=>{
-          order.items.map((item)=>{
+        response.data.orders.map((order) => {
+          order.items.map((item) => {
             item['status'] = order.status
             item['payment'] = order.payment
             item['paymentMethod'] = order.paymentMethod
@@ -99,23 +99,23 @@ const Orders = () => {
       }
 
     } catch (error) {
-      
+
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     loadOrderData()
-  },[token])
+  }, [token])
 
   return (
     <div className='border-t pt-16 border-gray-300'>
       <div className='text-2xl'>
-        <Title text1={'MY'} text2={'ORDERS'}/>
+        <Title text1={'MY'} text2={'ORDERS'} />
       </div>
 
       <div className=''>
-        {orderData.map((item,i)=>(
-           <div key={i} className='py-4 border-t border-b border-gray-300 text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
+        {orderData.map((item, i) => (
+          <div key={i} className='py-4 border-t border-b border-gray-300 text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4'>
             <div className='flex items-start gap-6 text-sm'>
               <img src={item.image[0]} className='w-16 sm:w-20' alt="" />
               <div>
@@ -132,15 +132,15 @@ const Orders = () => {
             </div>
 
             <div className='md:w-1/2 flex justify-between'>
-                <div className='flex items-center gap-2'>
-                  <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
-                  <p className='text-sm md:text-base'>{item.status}</p>
-                </div>
+              <div className='flex items-center gap-2'>
+                <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
+                <p className='text-sm md:text-base'>{item.status}</p>
+              </div>
 
-                <button onClick={loadOrderData} className='border px-4 py-2 text-sm font-medium rounded-sm hover:bg-black hover:text-white active:scale-98'>Track Order</button>
+              <button onClick={loadOrderData} className='border px-4 py-2 text-sm font-medium rounded-sm hover:bg-black hover:text-white active:scale-98'>Track Order</button>
             </div>
-            
-           </div>
+
+          </div>
         ))}
       </div>
     </div>
@@ -149,4 +149,3 @@ const Orders = () => {
 
 export default Orders
 
-// 434

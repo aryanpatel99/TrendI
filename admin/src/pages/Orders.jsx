@@ -15,7 +15,7 @@ const Orders = ({ token }) => {
     }
 
     try {
-      const response = await axios.post(backendUrl + '/api/order/list', {}, { headers: { token } })
+      const response = await axios.get(backendUrl + '/api/order/list', { headers: { token } })
       if (response.data.success) {
         setOrders(response.data.orders.reverse())
       } else {
@@ -30,17 +30,17 @@ const Orders = ({ token }) => {
   }
 
 
-  const statusHandler = async(e,orderId)=>{
+  const statusHandler = async (e, orderId) => {
     try {
-      const response = await axios.post(backendUrl + '/api/order/status',{orderId,status:e.target.value},{headers:{token}})
-      if(response.data.success){
+      const response = await axios.put(backendUrl + '/api/order/status', { orderId, status: e.target.value }, { headers: { token } })
+      if (response.data.success) {
         await fetchAllOrders()
         toast.success(response.data.message)
       }
     } catch (error) {
       console.log(error)
       toast.error(response.data.message)
-      
+
     }
   }
 
@@ -76,11 +76,11 @@ const Orders = ({ token }) => {
             <div>
               <p className='text-sm sm:text-[15px]'>Items : {order.items.length}</p>
               <p className='mt-3'>Method : {order.paymentMethod}</p>
-              <p>Payment : {order.payment?"Done":"Pending"}</p>
+              <p>Payment : {order.payment ? "Done" : "Pending"}</p>
               <p>Date : {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className='text-sm sm:text-[15px]'>{currency}{order.amount}</p>
-            <select onChange={(e)=> statusHandler(e,order._id)} value={order.status} className='font-semibold'>
+            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} className='font-semibold'>
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
               <option value="Shipped">Shipped</option>
