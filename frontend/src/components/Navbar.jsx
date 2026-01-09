@@ -6,21 +6,21 @@ import { ShopContext } from '../context/ShopContext.jsx'
 const Navbar = () => {
   const [visible, setVisible] = useState(false)
 
-  const {setShowSearch, getCartCount,navigate, token, setToken ,setCartItems} = useContext(ShopContext)
+  const { setShowSearch, getCartCount, navigate, token, setToken, setCartItems } = useContext(ShopContext)
 
-  const logout = ()=>{
+  const logout = () => {
     localStorage.removeItem('token')
     setToken('')
     setCartItems({})
-    navigate('/login') 
+    navigate('/login')
   }
 
   return (
-    <div className='flex items-center justify-between py-4 font-medium'>
+    <div className='sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 mb-5 flex items-center justify-between py-4 px-2 font-medium w-full'>
       <Link to={'/'}>
         <img src={assets.LOGO} className='w-36' alt="" />
       </Link>
-      <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
+      <ul className='hidden sm:flex gap-5 text-xs md:text-sm text-gray-700'>
         <NavLink className={({ isActive }) =>
           isActive ? 'nav-link nav-link-active' : 'nav-link'
         } to={'/'}>HOME</NavLink>
@@ -34,23 +34,23 @@ const Navbar = () => {
           isActive ? 'nav-link nav-link-active' : 'nav-link'
         } to={'/contact'}>CONTACT</NavLink>
 
-        <NavLink className='cursor-pointer' target='_blank' to={'https://trend-i-frhb.vercel.app/add'}><span className='border px-3 py-1 rounded-full text-xs border-gray-200 shadow font-semibold'>Admin Panel</span></NavLink>
+        <NavLink className='cursor-pointer' target='_blank' to={'https://trend-i-frhb.vercel.app/add'}><span className='px-4 py-1.5 rounded-full text-xs font-semibold bg-black text-white hover:bg-gray-800 transition-all shadow-md whitespace-nowrap'>Admin Panel</span></NavLink>
       </ul>
 
       <div className='flex items-center gap-6'>
-        <img onClick={()=> setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer' alt="search-icon" />
+        <img onClick={() => setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer min-w-5' alt="search-icon" />
 
         <div className='group relative'>
-          <img onClick={()=> token ? null : navigate('/login')} src={assets.profile_icon} className='w-5 cursor-pointer' alt="profile-icon" />
+          <img onClick={() => token ? null : navigate('/login')} src={assets.profile_icon} className='w-5 cursor-pointer min-w-5' alt="profile-icon" />
           {/* dropdown */}
           {token && (
-          <div className='group-hover:block hidden absolute dropdown-menu right-0 z-10 pt-4'>
-            <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-              <p className='cursor-pointer hover:text-black hover:font-semibold'>My Profile</p>
-              <p onClick={()=> navigate('/orders')} className='cursor-pointer hover:text-black hover:font-semibold'>Orders</p>
-              <p onClick={logout} className='cursor-pointer hover:text-black hover:font-semibold'>Logout</p>
+            <div className='group-hover:block hidden absolute dropdown-menu right-0 z-10 pt-4'>
+              <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-white border border-gray-200 text-gray-500 rounded'>
+                <p className='cursor-pointer hover:text-black hover:font-semibold'>My Profile</p>
+                <p onClick={() => navigate('/orders')} className='cursor-pointer hover:text-black hover:font-semibold'>Orders</p>
+                <p onClick={logout} className='cursor-pointer hover:text-black hover:font-semibold'>Logout</p>
+              </div>
             </div>
-          </div>
           )}
 
         </div>
@@ -65,18 +65,20 @@ const Navbar = () => {
       </div>
 
       {/* sidebar menu for small screens */}
-      <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ease-in z-50 ${visible ? "w-full" : "w-0"}`}>
+      <div className={`fixed top-0 right-0 bottom-0 h-screen overflow-hidden bg-white transition-all ease-in z-50 ${visible ? "w-full" : "w-0"}`}>
         <div className='flex flex-col text-gray-600'>
           <div onClick={() => setVisible(false)} className='flex items-center gap-4 p-3 cursor-pointer'>
             <img className='h-4 rotate-180' src={assets.dropdown_icon} alt="dropdown-icon" />
             <p>Back</p>
           </div>
+          <div className='flex flex-col gap-2 text-center w-1/2 mx-auto items-center'>
 
-          <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/'}>HOME</NavLink>
-          <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/collection'}>COLLECTION</NavLink>
-          <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/about'}>ABOUT</NavLink>
-          <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'/contact'}>CONTACT</NavLink>
-          <NavLink target='_blank' onClick={() => setVisible(false)} className='py-2 pl-6 border' to={'https://trend-i-frhb.vercel.app/add'}>ADMIN</NavLink>
+            <NavLink onClick={() => setVisible(false)} className='py-2 px-6 w-full border rounded-full' to={'/'}>HOME</NavLink>
+            <NavLink onClick={() => setVisible(false)} className='py-2 px-6 w-full border rounded-full' to={'/collection'}>COLLECTION</NavLink>
+            <NavLink onClick={() => setVisible(false)} className='py-2 px-6 w-full border rounded-full' to={'/about'}>ABOUT</NavLink>
+            <NavLink onClick={() => setVisible(false)} className='py-2 px-6 w-full border rounded-full' to={'/contact'}>CONTACT</NavLink>
+            <NavLink target='_blank' onClick={() => setVisible(false)} className='py-2 px-6 w-full border rounded-full' to={'https://trend-i-frhb.vercel.app/add'}>ADMIN</NavLink>
+          </div>
 
         </div>
       </div>

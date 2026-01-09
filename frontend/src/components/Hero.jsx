@@ -18,7 +18,7 @@ const Hero = () => {
 
     <div id="default-carousel" className="relative w-full z-0" data-carousel="slide">
       {/* <!-- Carousel wrapper --> */}
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+      <div className="relative h-56 overflow-hidden rounded-2xl md:h-[500px] shadow-lg">
         {/* <!-- Item 1 --> */}
         <div className="duration-700 ease-in-out" data-carousel-item="active">
           <img src={assets.hero_img} className="absolute inset-0 w-full h-full object-cover" alt="..." />

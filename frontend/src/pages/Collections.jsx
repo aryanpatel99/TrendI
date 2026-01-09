@@ -82,15 +82,15 @@ const Collections = () => {
 
 
   return (
-    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300'>
+    <div className='flex flex-col sm:flex-row gap-1 sm:gap-6 pt-10 border-t border-gray-300'>
       {/* filters */}
-      <div className='min-w-60'>
+      <div className='min-w-52'>
         <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS
           <img className={`h-3 sm:hidden ${showFilter ? "rotate-90" : ""}`} src={assets.dropdown_icon} alt="dropdown-icon" />
         </p>
 
         {/* categories filter */}
-        <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} sm:block`}>
+        <div className={`border border-gray-300 pl-5 py-3 mt-6 rounded-lg shadow-sm hover:shadow-md ${showFilter ? "" : "hidden"} sm:block`}>
           <p className='mb-3 text-sm font-medium'>CATEGORIES</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
@@ -109,7 +109,7 @@ const Collections = () => {
         </div>
 
         {/* subcategory filter */}
-        <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? "" : "hidden"} sm:block`}>
+        <div className={`border border-gray-300 pl-5 py-3 my-5 rounded-lg shadow-sm hover:shadow-md ${showFilter ? "" : "hidden"} sm:block`}>
           <p className='mb-3 text-sm font-medium'>TYPE</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
@@ -133,7 +133,7 @@ const Collections = () => {
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={"ALL"} text2={"COLLECTIONS"} />
           {/* Sorting features */}
-          <select onChange={(e) => setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2 outline-black'>
+          <select onChange={(e) => setSortType(e.target.value)} className='border rounded-full border-gray-300 text-xs sm:text-sm px-2 outline-black'>
             <option value="relevant">Sort by: Relevance</option>
             <option value="low-high">Sort by: Low to High</option>
             <option value="high-low">Sort by: High to Low</option>
@@ -150,11 +150,11 @@ const Collections = () => {
         {/* Pagination */}
         {filterProducts.length > itemsPerPage && (
           <div className='flex justify-center gap-1 sm:gap-2 mt-10 text-sm sm:text-base'>
-            <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1} className={`border px-2 py-1 sm:px-4 sm:py-2 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}>Prev</button>
+            <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1} className={`border rounded-xl px-2 py-1 sm:px-4 sm:py-2 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}>Prev</button>
             {Array.from({ length: Math.ceil(filterProducts.length / itemsPerPage) }, (_, i) => i + 1).map(page => (
-              <button key={page} onClick={() => setCurrentPage(page)} className={`border px-2 py-1 sm:px-4 sm:py-2 ${currentPage === page ? 'bg-black text-white' : ''}`}>{page}</button>
+              <button key={page} onClick={() => setCurrentPage(page)} className={`border rounded-xl px-2 py-1 sm:px-4 sm:py-2 ${currentPage === page ? 'bg-black text-white' : ''}`}>{page}</button>
             ))}
-            <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(filterProducts.length / itemsPerPage)))} disabled={currentPage === Math.ceil(filterProducts.length / itemsPerPage)} className={`border px-2 py-1 sm:px-4 sm:py-2 ${currentPage === Math.ceil(filterProducts.length / itemsPerPage) ? 'opacity-50 cursor-not-allowed' : ''}`}>Next</button>
+            <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(filterProducts.length / itemsPerPage)))} disabled={currentPage === Math.ceil(filterProducts.length / itemsPerPage)} className={`border rounded-xl px-2 py-1 sm:px-4 sm:py-2 ${currentPage === Math.ceil(filterProducts.length / itemsPerPage) ? 'opacity-50 cursor-not-allowed' : ''}`}>Next</button>
           </div>
         )}
 
